@@ -2,12 +2,12 @@ package use_cases.rate;
 
 import model.command.CommandRepository;
 
-public class RateDeliverer {
+public class RateRestaurant {
     CommandRepository commandRepository;
 
-    void rateDeliverer(Long delivererId, int rate){
+    void rateRestaurant(Long restaurantId, int rate){
         try{
-            commandRepository.rateDeliverer(delivererId, rate);
+            commandRepository.rateRestaurant(restaurantId, rate);
         }catch (Error error) {
             System.err.println(error.getMessage());
         }

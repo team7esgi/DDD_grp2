@@ -12,4 +12,10 @@ public interface CommandRepository {
     Command findById(Long id);
 
     List<Command> getAllCommandsForUser(Long userId);
+
+    void rateCommand(Long commandId, int rate);
+
+    void rateDeliverer(Long delivererId, int rate);
+
+    void rateRestaurant(Long restaurantId, int rate);
 }
