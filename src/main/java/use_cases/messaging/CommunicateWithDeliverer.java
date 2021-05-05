@@ -6,12 +6,18 @@ import model.users.Deliver;
 
 public class CommunicateWithDeliverer {
 
-    AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
-    void commnunicateWithDeliver(Client client, Deliver deliver, String message){
+    public CommunicateWithDeliverer(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
+
+    void commnunicateWithDeliver(Long clientId, Long deliverId, String message){
         try{
-            accountRepository.communicateWithDeliver(client, deliver, message);
-        }catch (Error error){
+            if(accountRepository.findById(clientId).isEmpty()) throw new Exception("Client non existant");
+            if(accountRepository.findById(deliverId).isEmpty()) throw new Exception("Deliver non existant");
+            accountRepository.communicateWithDeliver(clientId, deliverId, message);
+        }catch (Error | Exception error){
             System.err.println(error);
 
         }

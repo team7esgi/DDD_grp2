@@ -1,13 +1,15 @@
 package model.users;
 
+import java.util.Optional;
+
 public interface AccountRepository {
-    Account findById(Long cliendId);
+    Optional<Account> findById(Long cliendId);
 
     void updateClientInformation(Client client);
 
     void updateDeliverInformation(Deliver client);
 
-    void communicateWithDeliver(Client client, Deliver deliver, String message);
+    void communicateWithDeliver(Long clientId, Long deliverId, String message);
 
 
 
