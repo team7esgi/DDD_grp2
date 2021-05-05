@@ -1,5 +1,7 @@
 package model.restaurant;
 
-public class Restaurant {
+import model.users.Account;
+
+public class Restaurant extends Account {
 
 }

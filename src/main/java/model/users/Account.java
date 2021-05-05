@@ -1,4 +1,4 @@
 package model.users;
 
-public class Personne {
+public class Account {
 }
