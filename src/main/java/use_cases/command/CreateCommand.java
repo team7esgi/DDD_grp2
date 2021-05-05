@@ -7,13 +7,14 @@ import model.dishes.Dishes;
 import model.users.Client;
 
 import java.util.List;
+import java.util.Optional;
 
 public class CreateCommand {
 
     CommandRepository commandRepository;
 
     Command createCommand(List<Dishes> dishesList, Client client, Restaurant restaurant){
-        Command command = new Command();
+        Optional<Command> command = Optional.of(new Command());
         try{
 
             command = commandRepository.createCommand(dishesList,client, restaurant);
