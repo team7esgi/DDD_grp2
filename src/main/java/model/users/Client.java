@@ -1,6 +1,6 @@
-package model;
+package model.users;
 
-public class Client {
+public class Client extends Personne {
 
     private String email;
     private String password;
