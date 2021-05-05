@@ -4,6 +4,8 @@ import model.command.CommandRepository;
 import model.users.Account;
 import model.users.AccountRepository;
 
+import java.util.Optional;
+
 public class RateDeliverer {
     private final CommandRepository commandRepository;
     private final AccountRepository accountRepository;
@@ -15,11 +17,11 @@ public class RateDeliverer {
 
     void rateDeliverer(Long clientId, Long delivererId, int rate) throws Exception {
 
-        Account client = accountRepository.findById(clientId);
-        if (client ==  null) throw new Exception("no such user ! ");
+        Optional<Account> client = accountRepository.findById(clientId);
+        if (!client.isPresent()) throw new Exception("no such user ! ");
 
-        Account deliverer = accountRepository.findById(delivererId);
-        if (deliverer == null) throw new Exception("no such command ! ");
+        Optional<Account> deliverer = accountRepository.findById(delivererId);
+        if (!deliverer.isPresent()) throw new Exception("no such command ! ");
 
         if (rate <0 || rate >5) throw new Exception("rate inexistant ! ");
 

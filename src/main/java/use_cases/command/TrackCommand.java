@@ -2,16 +2,19 @@ package use_cases.command;
 
 import model.command.Command;
 import model.command.CommandRepository;
-import model.maps.IMaps;
+import model.maps.MapRepository;
 import model.maps.Map;
 
 public class TrackCommand {
-    CommandRepository commandRepository;
-    IMaps mapsService;
+    private final MapRepository mapRepository;
+
+    public TrackCommand(MapRepository mapRepository) {
+        this.mapRepository = mapRepository;
+    }
 
     public void getCommandPosition(Command command){
-        Map commandPosition = mapsService.getCommandPosition(command);
-        mapsService.trackCommandPosition(commandPosition);
+        Map commandPosition = mapRepository.getCommandPosition(command);
+        mapRepository.trackCommandPosition(commandPosition);
     }
 
 

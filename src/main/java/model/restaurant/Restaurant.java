@@ -8,6 +8,7 @@ import java.util.List;
 public class Restaurant extends Account {
 
     private List<Dishes> dishesList;
+    private Long id;
 
     public Restaurant(){
 
@@ -19,5 +20,9 @@ public class Restaurant extends Account {
 
     public void setDishesList(List<Dishes> dishesList) {
         this.dishesList = dishesList;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 }

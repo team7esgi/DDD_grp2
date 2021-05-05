@@ -1,7 +1,10 @@
 package use_cases.client;
 
+import model.users.Account;
 import model.users.AccountRepository;
 import model.users.Client;
+
+import java.util.Optional;
 
 public class UpdateClientInformation {
 
@@ -12,9 +15,9 @@ public class UpdateClientInformation {
     }
 
     void updateClientInformation(Client client){
-
+        Optional<Account> clientFounded = accountRepository.findById(client.getId());
         try{
-            if(accountRepository.findById(client.getId()).isEmpty()) throw new Exception("Client non existant !");
+            if(!clientFounded.isPresent()) throw new Exception("Client non existant !");
             accountRepository.updateClientInformation(client);
 
         }catch (Error | Exception error){

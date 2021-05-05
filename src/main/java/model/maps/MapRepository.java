@@ -2,7 +2,7 @@ package model.maps;
 
 import model.command.Command;
 
-public interface IMaps {
+public interface MapRepository {
 
     public Map getCommandPosition(Command command);
 
