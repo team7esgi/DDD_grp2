@@ -5,6 +5,8 @@ import model.command.CommandRepository;
 import model.users.Account;
 import model.users.AccountRepository;
 
+import java.util.Optional;
+
 public class RateCommand {
 
     private final CommandRepository commandRepository;
@@ -18,8 +20,8 @@ public class RateCommand {
     void rateCommand(Long cliendId, Long commandId, int rate) throws Exception {
         Account client = accountRepository.findById(cliendId);
         if (client ==  null) throw new Exception("no such user ! ");
-        Command command = commandRepository.findById(commandId);
-        if (command == null) throw new Exception("no such command ! ");
+        Optional<Command> command = commandRepository.findById(commandId);
+        if (!command.isPresent()) throw new Exception("no such command ! ");
         if (rate <0 || rate >5) throw new Exception("rate inexistant ! ");
 
         try{
