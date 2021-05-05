@@ -1,7 +1,9 @@
 package use_cases.rate;
 
+import model.command.CommandException;
 import model.command.CommandRepository;
 import model.users.Account;
+import model.users.AccountException;
 import model.users.AccountRepository;
 
 import java.util.Optional;
@@ -18,10 +20,10 @@ public class RateDeliverer {
     void rateDeliverer(Long clientId, Long delivererId, int rate) throws Exception {
 
         Optional<Account> client = accountRepository.findById(clientId);
-        if (!client.isPresent()) throw new Exception("no such user ! ");
+        if (!client.isPresent()) throw new AccountException("no such user ! ");
 
         Optional<Account> deliverer = accountRepository.findById(delivererId);
-        if (!deliverer.isPresent()) throw new Exception("no such command ! ");
+        if (!deliverer.isPresent()) throw new CommandException("no such command ! ");
 
         if (rate <0 || rate >5) throw new Exception("rate inexistant ! ");
 

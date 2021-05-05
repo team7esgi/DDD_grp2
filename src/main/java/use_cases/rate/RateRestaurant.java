@@ -2,8 +2,10 @@ package use_cases.rate;
 
 import model.command.CommandRepository;
 import model.restaurant.Restaurant;
+import model.restaurant.RestaurantException;
 import model.restaurant.RestaurantRepository;
 import model.users.Account;
+import model.users.AccountException;
 import model.users.AccountRepository;
 
 import java.util.Optional;
@@ -20,10 +22,10 @@ public class RateRestaurant {
 
     void rateRestaurant(Long clientId, Long restaurantId, int rate) throws Exception {
         Optional<Account> client = accountRepository.findById(clientId);
-        if (!client.isPresent()) throw new Exception("no such user ! ");
+        if (!client.isPresent()) throw new AccountException("no such user ! ");
 
         Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
-        if (!restaurant.isPresent()) throw new Exception("no such restaurant ! ");
+        if (!restaurant.isPresent()) throw new RestaurantException("no such restaurant ! ");
 
         if (rate <0 || rate >5) throw new Exception("rate inexistant ! ");
 
