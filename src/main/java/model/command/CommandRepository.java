@@ -1,21 +1,22 @@
 package model.command;
 
-import model.restaurant.Restaurant;
 import model.dishes.Dishes;
+import model.restaurant.Restaurant;
 import model.users.Client;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CommandRepository {
-    Command createCommand(List<Dishes> dishesList, Client client, Restaurant restaurant);
 
-    Command findById(Long id);
+    Optional<Command> createCommand(List<Dishes> dishesList, Client client, Restaurant restaurant);
 
-    List<Command> getAllCommandsForUser(Long userId);
+    Optional<Command> findById(Long id);
 
-    void rateCommand(Long commandId, int rate);
+    Optional<List<Command>> getAllCommandsForUser(Long userId);
 
-    void rateDeliverer(Long delivererId, int rate);
+    void rateCommand(Long cliendId, Long commandId, int rate);
 
-    void rateRestaurant(Long restaurantId, int rate);
+    void rateDeliverer(Long clientId, Long delivererId, int rate);
+
 }

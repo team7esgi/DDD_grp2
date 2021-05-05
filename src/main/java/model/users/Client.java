@@ -1,6 +1,6 @@
 package model.users;
 
-public class Client extends Personne {
+public class Client extends Account {
 
     private Long id;
 
