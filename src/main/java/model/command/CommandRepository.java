@@ -13,7 +13,7 @@ public interface CommandRepository {
 
     List<Command> getAllCommandsForUser(Long userId);
 
-    void rateCommand(Long commandId, int rate);
+    void rateCommand(Long cliendId, Long commandId, int rate);
 
     void rateDeliverer(Long delivererId, int rate);
 

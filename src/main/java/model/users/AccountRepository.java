@@ -1,4 +1,5 @@
 package model.users;
 
-public class AccountRepository {
+public interface AccountRepository {
+    Account findById(Long cliendId);
 }
