@@ -9,12 +9,11 @@ import model.users.Client;
 
 import java.util.List;
 
-
 public class CreateCommand {
+
     CommandRepository commandRepository;
 
     Command createCommand(List<Dishes> dishesList, Client client, Restaurant restaurant){
-
         Command command = new Command();
         try{
             command = commandRepository.createCommand(dishesList,client, restaurant);

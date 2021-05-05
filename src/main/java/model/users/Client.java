@@ -2,6 +2,8 @@ package model.users;
 
 public class Client extends Personne {
 
+    private Long id;
+
     private String email;
     private String password;
 
@@ -13,7 +15,8 @@ public class Client extends Personne {
 
     public Client(){}
 
-    public Client(String email, String password, String firstName, String lastName, String address, String phoneNumber, String details) {
+    public Client(Long id, String email, String password, String firstName, String lastName, String address, String phoneNumber, String details) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -21,6 +24,14 @@ public class Client extends Personne {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.details = details;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {

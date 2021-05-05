@@ -10,4 +10,6 @@ public interface CommandRepository {
     Command createCommand(List<Dishes> dishesList, Client client, Restaurant restaurant);
 
     Command findById(Long id);
+
+    List<Command> getAllCommandsForUser(Long userId);
 }
