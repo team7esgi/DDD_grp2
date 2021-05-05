@@ -1,6 +1,6 @@
 package model.command;
 
-import model.Restaurant;
+import model.restaurant.Restaurant;
 import model.dishes.Dishes;
 import model.users.Client;
 
