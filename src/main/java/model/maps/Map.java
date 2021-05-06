@@ -9,7 +9,10 @@ public class Map {
 
     private String arrival;
 
-
+    public Map(String departure, String arrival) {
+        this.departure = departure;
+        this.arrival = arrival;
+    }
 
     public void showRoute(){
         System.out.println("Show the route to the ....");

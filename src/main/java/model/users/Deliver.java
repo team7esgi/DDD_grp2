@@ -3,6 +3,15 @@ package model.users;
 import model.maps.Map;
 
 public class Deliver extends Account {
+    public Deliver(Long id, Map position, Map route) {
+        super(id);
+        this.position = position;
+        this.route = route;
+    }
+
+    public Deliver() {
+        super();
+    }
 
     private Map position;
 

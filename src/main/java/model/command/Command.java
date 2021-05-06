@@ -7,6 +7,15 @@ import java.util.List;
 
 public class Command {
 
+    public Command(Long id, List<Dishes> dishesList, Long clientId, Long delivererId, Map position, CommandState state) {
+        this.id = id;
+        this.dishesList = dishesList;
+        this.clientId = clientId;
+        this.delivererId = delivererId;
+        this.position = position;
+        this.state = state;
+    }
+    public Command(){}
 
     private Long id;
 

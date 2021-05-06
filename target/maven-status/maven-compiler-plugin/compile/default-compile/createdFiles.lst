@@ -6,12 +6,14 @@ use_cases\show\ShowRestaurantsAvailable.class
 model\command\CommandException.class
 use_cases\messaging\CommunicateWithDeliverer.class
 model\command\Command.class
+use_cases\command\TrackCommand$1.class
 use_cases\rate\RateCommand.class
 model\users\Client.class
 model\users\AccountRepository.class
 use_cases\client\CreateClient.class
 use_cases\client\UpdateClientInformation.class
 use_cases\show\ShowRestaurantMenu.class
+model\command\CommandState.class
 model\restaurant\Restaurant.class
 model\users\Account.class
 model\users\AccountException.class

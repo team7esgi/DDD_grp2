@@ -8,6 +8,7 @@ C:\Users\allou\Desktop\projets\ddd_grp2\DDD_grp2\src\main\java\model\restaurant\
 C:\Users\allou\Desktop\projets\ddd_grp2\DDD_grp2\src\main\java\model\dishes\DishesRepository.java
 C:\Users\allou\Desktop\projets\ddd_grp2\DDD_grp2\src\main\java\use_cases\show\ShowRestaurantsAvailable.java
 C:\Users\allou\Desktop\projets\ddd_grp2\DDD_grp2\src\main\java\model\maps\Map.java
+C:\Users\allou\Desktop\projets\ddd_grp2\DDD_grp2\src\main\java\model\command\CommandState.java
 C:\Users\allou\Desktop\projets\ddd_grp2\DDD_grp2\src\main\java\model\command\CommandException.java
 C:\Users\allou\Desktop\projets\ddd_grp2\DDD_grp2\src\main\java\use_cases\client\CreateClient.java
 C:\Users\allou\Desktop\projets\ddd_grp2\DDD_grp2\src\main\java\use_cases\show\ShowRestaurantMenu.java
