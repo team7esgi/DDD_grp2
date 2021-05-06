@@ -18,4 +18,6 @@ public interface RestaurantRepository {
 
     List<Dishes> showRestaurantMenu(Restaurant restaurant);
 
+    List<Restaurant> getAllRestaurants();
+
 }

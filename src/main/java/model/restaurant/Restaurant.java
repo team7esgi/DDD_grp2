@@ -8,6 +8,7 @@ import java.util.List;
 public class Restaurant extends Account {
 
     private Long id;
+    private boolean available;
 
     private String name;
 
@@ -23,6 +24,8 @@ public class Restaurant extends Account {
     public Restaurant(){
 
     }
+
+    public boolean isAvailable() {return this.available; }
 
     public List<Dishes> getDishesList() {
         return dishesList;
