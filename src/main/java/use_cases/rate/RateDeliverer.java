@@ -10,11 +10,10 @@ import java.util.Optional;
 
 public class RateDeliverer {
 
-    private final CommandRepository commandRepository;
     private final AccountRepository accountRepository;
 
     public RateDeliverer(CommandRepository commandRepository, AccountRepository accountRepository) {
-        this.commandRepository = commandRepository;
+
         this.accountRepository = accountRepository;
     }
 
@@ -29,7 +28,7 @@ public class RateDeliverer {
         if (rate <0 || rate >5) throw new Exception("rate inexistant ! ");
 
         try{
-            commandRepository.rateDeliverer(clientId, delivererId, rate);
+            accountRepository.rateDeliverer(rate,delivererId, clientId);
         }catch (Error error) {
             System.err.println(error.getMessage());
         }

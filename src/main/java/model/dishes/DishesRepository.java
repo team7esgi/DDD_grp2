@@ -8,4 +8,6 @@ public interface DishesRepository {
 
     Optional<Dishes> getDish(Long id);
 
+    void rateDish(int rate, Long clientId, Long dishId);
+
 }

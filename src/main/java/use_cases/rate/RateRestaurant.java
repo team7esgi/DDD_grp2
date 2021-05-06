@@ -15,7 +15,7 @@ public class RateRestaurant {
     private final RestaurantRepository restaurantRepository;
     private final AccountRepository accountRepository;
 
-    public RateRestaurant(CommandRepository commandRepository, RestaurantRepository restaurantRepository, AccountRepository accountRepository) {
+    public RateRestaurant(RestaurantRepository restaurantRepository, AccountRepository accountRepository) {
         this.restaurantRepository = restaurantRepository;
         this.accountRepository = accountRepository;
     }

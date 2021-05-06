@@ -21,10 +21,13 @@ public class RateCommand {
     }
 
     void rateCommand(Long clientId, Long commandId, int rate) throws Exception {
+
         Optional<Account> client = accountRepository.findById(clientId);
         if (!client.isPresent()) throw new AccountException("no such user ! ");
+
         Optional<Command> command = commandRepository.findById(commandId);
         if (!command.isPresent()) throw new CommandException("no such command ! ");
+
         if (rate <0 || rate >5) throw new Exception("rate inexistant ! ");
 
         try{

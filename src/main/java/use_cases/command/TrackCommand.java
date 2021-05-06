@@ -24,37 +24,9 @@ public class TrackCommand {
 
         Optional<Command> commandFounded = commandRepository.findById(commandId);
         if(!commandFounded.isPresent()) throw new CommandException("No such command !");
-        Command command = commandFounded.get();
-        switch (command.getState()) {
-            case ACCEPTED :
-                System.out.println(CommandState.ACCEPTED.getState());
-                command.getPosition().showPosition();
-                break;
-            case IN_PREPARATION :
-                System.out.println(CommandState.IN_PREPARATION.getState());
-                command.getPosition().showPosition();
-                break;
-
-            case PREPARATION_DONE:
-                System.out.println(CommandState.PREPARATION_DONE.getState());
-                command.getPosition().showPosition();
-                break;
-
-            case IN_TRANSIT :
-                command.getPosition().showPosition();
-                command.getPosition().showRoute();
-                System.out.println(CommandState.IN_TRANSIT.getState());
-                break;
-            case DELIVERED:
-                command.getPosition().showPosition();
-                System.out.println(CommandState.DELIVERED.getState());
-
-
-        }
-
-        Map commandPosition = mapRepository.getCommandPosition(command);
-        mapRepository.trackCommandPosition(commandPosition);
+        commandFounded.get().showCommandPosition();
     }
+
 
 
 }

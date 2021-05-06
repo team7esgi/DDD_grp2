@@ -1,51 +1,29 @@
 package model.dishes;
 
-import java.util.List;
+import model.ObjectId;
+import model.rate.Rate;
 
 public class Dishes {
 
-    private Long id;
+    private ObjectId id;
 
-    private String name;
-
-    private String details;
-
-    private float price;
-
+    private Description description;
     private Long restaurantId;
+
+    private Rate rate;
 
     private boolean isAvailable;
 
-    public Long getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Description getDescription() {
+        return description;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
+    public Rate getRate() {
+        return rate;
     }
 
     public Long getRestaurantId() {

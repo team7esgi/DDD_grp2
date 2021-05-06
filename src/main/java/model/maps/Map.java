@@ -1,13 +1,12 @@
 package model.maps;
 
-import model.command.Command;
-import model.users.Deliver;
+import model.users.Address;
 
 public class Map {
 
-    private String departure;
+    private Address departure;
 
-    private String arrival;
+    private Address arrival;
 
 
 

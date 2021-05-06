@@ -17,6 +17,4 @@ public interface CommandRepository {
 
     void rateCommand(Long cliendId, Long commandId, int rate);
 
-    void rateDeliverer(Long clientId, Long delivererId, int rate);
-
 }
