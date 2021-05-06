@@ -4,6 +4,7 @@ import model.restaurant.Restaurant;
 import model.command.Command;
 import model.command.CommandRepository;
 import model.dishes.Dishes;
+import model.restaurant.RestaurantException;
 import model.restaurant.RestaurantRepository;
 import model.users.Account;
 import model.users.AccountException;
@@ -33,10 +34,10 @@ public class CreateCommand {
         if(!clientAccount.isPresent()) throw new AccountException("Client doesn't exist !");
 
         Optional<Restaurant> restaurantFounded = restaurantRepository.findById(restaurant.getId());
-        if(!restaurantFounded.isPresent()) throw new Exception("No such restaurant !");
+        if(!restaurantFounded.isPresent()) throw new RestaurantException("No such restaurant !");
 
         boolean isOpen = restaurantRepository.isOpen(restaurant.getId());
-        if(!isOpen) throw new Exception("Restaurant closed ! ");
+        if(!isOpen) throw new RestaurantException("Restaurant closed ! ");
 
         try{
 
