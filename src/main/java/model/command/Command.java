@@ -55,6 +55,7 @@ public class Command {
         return this.id;
     }
 
+
     public List<Dishes> getDishesList() {
         return dishesList;
     }

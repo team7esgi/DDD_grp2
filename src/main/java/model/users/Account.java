@@ -2,8 +2,6 @@ package model.users;
 
 import model.ObjectId;
 
-import java.util.UUID;
-
 public class Account {
 
     private ObjectId id;

@@ -18,9 +18,10 @@ public class CreateClient {
 
     public Client execute(Client client) throws AccountException {
         Optional<Account> clientFounded = accountRepository.findByEmail(client.getEmail());
-        if(clientFounded.isPresent()) throw new AccountException("User already exist !");
-        accountRepository.insert(client);
 
+        if(clientFounded.isPresent()) throw new AccountException("User already exist !");
+
+        accountRepository.insert(client);
         return client;
 
 

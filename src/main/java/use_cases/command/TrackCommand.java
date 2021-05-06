@@ -24,9 +24,12 @@ public class TrackCommand {
     public void execute(ObjectId commandId) throws CommandException {
 
         Optional<Command> commandFounded = commandRepository.findById(commandId);
+
         if(!commandFounded.isPresent()) throw new CommandException("No such command !");
+
         commandFounded.get().showCommandPosition();
     }
+
 
 
 

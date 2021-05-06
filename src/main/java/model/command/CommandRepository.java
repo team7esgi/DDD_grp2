@@ -2,8 +2,6 @@ package model.command;
 
 import model.ObjectId;
 import model.dishes.Dishes;
-import model.restaurant.Restaurant;
-import model.users.Client;
 
 import java.util.List;
 import java.util.Optional;

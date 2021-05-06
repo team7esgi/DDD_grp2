@@ -16,14 +16,7 @@ public class ShowRestaurantMenu {
     }
 
     List<Dishes> execute(Restaurant restaurant){
-        List<Dishes> restaurantMenu = new ArrayList<Dishes>();
 
-        try{
-           restaurantMenu = restaurantRepository.showRestaurantMenu(restaurant);
-        }catch (Error error){
-            System.err.println(error.getMessage());
-        }
-
-        return  restaurantMenu;
+        return restaurantRepository.showRestaurantMenu(restaurant);
     }
 }

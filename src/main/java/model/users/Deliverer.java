@@ -25,7 +25,6 @@ public class Deliverer extends Account {
         return position;
     }
 
-
     public Map getRoute() {
         return route;
     }

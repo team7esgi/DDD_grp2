@@ -5,7 +5,7 @@ import model.ObjectId;
 import java.util.Optional;
 
 public interface AccountRepository {
-    Optional<Account> findById(ObjectId cliendId);
+    Optional<Account> findById(ObjectId clientId);
 
     Optional<Account> findByEmail(String email);
 
@@ -17,7 +17,7 @@ public interface AccountRepository {
 
     void updateDeliverInformation(Deliverer client);
 
-    void communicateWithDeliver(ObjectId clientId, ObjectId deliverId, String message);
+    void sendMessage(ObjectId senderId, ObjectId receiverId, String message);
 
 
 

@@ -6,12 +6,9 @@ import model.rate.Rate;
 public class Dishes {
 
     private ObjectId id;
-
     private Description description;
-    private Long restaurantId;
-
+    private ObjectId restaurantId;
     private Rate rate;
-
     private boolean isAvailable;
 
     public ObjectId getId() {
@@ -26,7 +23,7 @@ public class Dishes {
         return rate;
     }
 
-    public Long getRestaurantId() {
+    public ObjectId getRestaurantId() {
         return restaurantId;
     }
 

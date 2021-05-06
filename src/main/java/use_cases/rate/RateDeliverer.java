@@ -21,17 +21,14 @@ public class RateDeliverer {
     void execute(ObjectId clientId, ObjectId delivererId, int rate) throws Exception {
 
         Optional<Account> client = accountRepository.findById(clientId);
-        if (!client.isPresent()) throw new AccountException("no such user ! ");
-
         Optional<Account> deliverer = accountRepository.findById(delivererId);
+        verificationOf(rate, client, deliverer);
+        accountRepository.rateDeliverer(rate,delivererId, clientId);
+    }
+
+    private void verificationOf(int rate, Optional<Account> client, Optional<Account> deliverer) throws Exception {
+        if (!client.isPresent()) throw new AccountException("no such user ! ");
         if (!deliverer.isPresent()) throw new CommandException("no such command ! ");
-
         if (rate <0 || rate >5) throw new Exception("rate inexistant ! ");
-
-        try{
-            accountRepository.rateDeliverer(rate,delivererId, clientId);
-        }catch (Error error) {
-            System.err.println(error.getMessage());
-        }
     }
 }

@@ -26,12 +26,9 @@ public class Client extends Account {
         return address;
     }
 
-
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
 
     public String getDetails() {
         return details;

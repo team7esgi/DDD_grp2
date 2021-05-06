@@ -8,8 +8,6 @@ public class Map {
 
     private Address arrival;
 
-
-
     public void showRoute(){
         System.out.println("Show the route to the ....");
     }

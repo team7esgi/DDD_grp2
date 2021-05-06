@@ -13,14 +13,19 @@ public class CommunicateWithDeliverer {
         this.accountRepository = accountRepository;
     }
 
-    void execute(ObjectId clientId, ObjectId deliverId, String message){
-        try{
-            if(!accountRepository.findById(clientId).isPresent()) throw new AccountException("No such user ! ");
-            if(!accountRepository.findById(deliverId).isPresent()) throw new AccountException("No such deliverer !");
-            accountRepository.communicateWithDeliver(clientId, deliverId, message);
-        }catch (Error | Exception error){
-            System.err.println(error);
+    void execute(ObjectId clientId, ObjectId deliverId, String message) throws AccountException {
 
-        }
+        boolean isClientPresent = accountRepository.findById(clientId).isPresent();
+        boolean isDelivererPresent = accountRepository.findById(deliverId).isPresent();
+
+        verificationOf(isClientPresent, isDelivererPresent);
+
+        accountRepository.sendMessage(clientId, deliverId, message);
+
+    }
+
+    private void verificationOf(boolean isClientPresent, boolean isDelivererPresent) throws AccountException {
+        if(!isClientPresent) throw new AccountException("No such user ! ");
+        if(!isDelivererPresent) throw new AccountException("No such deliverer !");
     }
 }
