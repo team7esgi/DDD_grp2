@@ -9,10 +9,13 @@ public class Restaurant extends Account {
 
     private List<Dishes> dishesList;
     private Long id;
+    private boolean available;
 
     public Restaurant(){
 
     }
+
+    public boolean isAvailable() {return this.available; }
 
     public List<Dishes> getDishesList() {
         return dishesList;
