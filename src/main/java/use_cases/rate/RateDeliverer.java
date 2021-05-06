@@ -9,6 +9,7 @@ import model.users.AccountRepository;
 import java.util.Optional;
 
 public class RateDeliverer {
+
     private final CommandRepository commandRepository;
     private final AccountRepository accountRepository;
 

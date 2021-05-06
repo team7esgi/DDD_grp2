@@ -11,6 +11,7 @@ import model.users.AccountRepository;
 import java.util.Optional;
 
 public class RateRestaurant {
+
     private final RestaurantRepository restaurantRepository;
     private final AccountRepository accountRepository;
 

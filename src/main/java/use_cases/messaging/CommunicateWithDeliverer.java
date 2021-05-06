@@ -5,6 +5,7 @@ import model.users.AccountRepository;
 
 public class CommunicateWithDeliverer {
 
+
     private final AccountRepository accountRepository;
 
     public CommunicateWithDeliverer(AccountRepository accountRepository) {

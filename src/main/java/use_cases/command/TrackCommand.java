@@ -9,6 +9,7 @@ import model.maps.Map;
 import java.util.Optional;
 
 public class TrackCommand {
+
     private final MapRepository mapRepository;
     private final CommandRepository commandRepository;
 
