@@ -1,5 +1,6 @@
 package use_cases.command;
 
+import model.command.CommandException;
 import model.restaurant.Restaurant;
 import model.command.Command;
 import model.command.CommandRepository;
@@ -40,6 +41,9 @@ public class CreateCommand {
         boolean isOpen = restaurantRepository.isOpen(restaurant.getId());
         if(!isOpen) throw new RestaurantException("Restaurant closed ! ");
 
+        for(Dishes dish : dishesList) {
+            if(!dish.isAvailable()) throw new CommandException("dish not available");
+        }
         try{
 
             command = commandRepository.createCommand(dishesList,client, restaurant);

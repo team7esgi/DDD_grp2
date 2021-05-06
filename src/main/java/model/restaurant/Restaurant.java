@@ -7,8 +7,18 @@ import java.util.List;
 
 public class Restaurant extends Account {
 
-    private List<Dishes> dishesList;
     private Long id;
+
+    private String name;
+
+    private String category;
+
+    private String address;
+
+    private List<Dishes> dishesList;
+
+    private boolean isOpen;
+
 
     public Restaurant(){
 
