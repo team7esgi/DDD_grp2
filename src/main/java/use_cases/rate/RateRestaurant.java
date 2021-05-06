@@ -22,7 +22,7 @@ public class RateRestaurant {
 
     void rateRestaurant(Long clientId, Long restaurantId, int rate) throws Exception {
         Optional<Account> client = accountRepository.findById(clientId);
-        if (!client.isPresent()) throw new AccountException("no such user ! ");
+        if (!client.isPresent()) throw new AccountException("no such user !");
 
         Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
         if (!restaurant.isPresent()) throw new RestaurantException("no such restaurant ! ");

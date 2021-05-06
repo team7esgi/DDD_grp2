@@ -18,7 +18,7 @@ public class UpdateClientInformation {
     void updateClientInformation(Client client){
         Optional<Account> clientFounded = accountRepository.findById(client.getId());
         try{
-            if(!clientFounded.isPresent()) throw new AccountException("Client non existant !");
+            if(!clientFounded.isPresent()) throw new AccountException("Client doesn't exist!");
             accountRepository.updateClientInformation(client);
 
         }catch (Error | Exception error){
