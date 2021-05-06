@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Command {
 
+
     private Long id;
 
     private List<Dishes> dishesList;
@@ -65,5 +66,17 @@ public class Command {
 
     public void setState(CommandState state) {
         this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "Command{" +
+                "id=" + id +
+                ", dishesList=" + dishesList +
+                ", clientId=" + clientId +
+                ", delivererId=" + delivererId +
+                ", position=" + position +
+                ", state=" + state +
+                '}';
     }
 }

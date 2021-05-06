@@ -10,6 +10,16 @@ public class Dishes {
 
     private String details;
 
+    public Dishes(Long id, String name, String details, float price, Long restaurantId, boolean isAvailable) {
+        this.id = id;
+        this.name = name;
+        this.details = details;
+        this.price = price;
+        this.restaurantId = restaurantId;
+        this.isAvailable = isAvailable;
+    }
+    public Dishes(){}
+
     private float price;
 
     private Long restaurantId;

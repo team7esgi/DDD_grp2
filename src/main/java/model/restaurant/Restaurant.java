@@ -25,6 +25,16 @@ public class Restaurant extends Account {
 
     }
 
+    public Restaurant(Long id, boolean available, String name, String category, String address, List<Dishes> dishesList, boolean isOpen) {
+        this.id = id;
+        this.available = available;
+        this.name = name;
+        this.category = category;
+        this.address = address;
+        this.dishesList = dishesList;
+        this.isOpen = isOpen;
+    }
+
     public boolean isAvailable() {return this.available; }
 
     public List<Dishes> getDishesList() {
