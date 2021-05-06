@@ -9,7 +9,7 @@ public interface AccountRepository {
 
     Optional<Account> findByEmail(String email);
 
-    Optional<Account> insert(Account client);
+    Optional<Account> insert(Client client);
 
     void rateDeliverer(int rate, ObjectId delivererId, ObjectId clientId);
 
