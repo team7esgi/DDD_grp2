@@ -6,5 +6,4 @@ public class Dishes {
 
     private Long id;
 
-    private List<String>
 }

@@ -7,7 +7,7 @@ public interface AccountRepository {
 
     Optional<Account> findByEmail(String email);
 
-    Optional<Account> insert(Account client);
+    Optional<Account> insert(Client client);
 
 
     void updateClientInformation(Client client);

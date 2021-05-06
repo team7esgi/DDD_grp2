@@ -1,0 +1,12 @@
+use_cases\rate\RateDelivererTest.class
+use_cases\command\CreateCommandTest.class
+use_cases\command\ShowCommandHistoryTest.class
+use_cases\client\UpdateClientInformationTest.class
+use_cases\rate\RateRestaurantTest.class
+use_cases\show\ShowRestaurantMenuTest.class
+use_cases\messaging\CommunicateWithDelivererTest.class
+use_cases\rate\RateCommandTest.class
+use_cases\show\ShowRestaurantsAvailableTest.class
+FakeDishesRepository.class
+CreateClientTest.class
+use_cases\command\TrackCommandTest.class
