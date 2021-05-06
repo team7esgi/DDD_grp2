@@ -25,15 +25,9 @@ public class Deliverer extends Account {
         return position;
     }
 
-    public void setPosition(Map position) {
-        this.position = position;
-    }
 
     public Map getRoute() {
         return route;
     }
 
-    public void setRoute(Map route) {
-        this.route = route;
-    }
 }

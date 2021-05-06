@@ -1,5 +1,6 @@
 package use_cases.messaging;
 
+import model.ObjectId;
 import model.users.AccountException;
 import model.users.AccountRepository;
 
@@ -12,7 +13,7 @@ public class CommunicateWithDeliverer {
         this.accountRepository = accountRepository;
     }
 
-    void communicateWithDeliver(Long clientId, Long deliverId, String message){
+    void execute(ObjectId clientId, ObjectId deliverId, String message){
         try{
             if(!accountRepository.findById(clientId).isPresent()) throw new AccountException("No such user ! ");
             if(!accountRepository.findById(deliverId).isPresent()) throw new AccountException("No such deliverer !");

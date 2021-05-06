@@ -55,41 +55,24 @@ public class Command {
         return this.id;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
     public List<Dishes> getDishesList() {
         return dishesList;
-    }
-
-    public void setDishesList(List<Dishes> dishesList) {
-        this.dishesList = dishesList;
     }
 
     public ObjectId getClientId() {
         return clientId;
     }
 
-
     public ObjectId getDelivererId() {
         return delivererId;
     }
 
-
     public Map getPosition() {
         return position;
-    }
-
-    public void setPosition(Map position) {
-        this.position = position;
     }
 
     public CommandState getState() {
         return state;
     }
 
-    public void setState(CommandState state) {
-        this.state = state;
-    }
 }

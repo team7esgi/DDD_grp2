@@ -1,5 +1,6 @@
 package use_cases.command;
 
+import model.ObjectId;
 import model.command.Command;
 import model.command.CommandException;
 import model.command.CommandRepository;
@@ -20,7 +21,7 @@ public class TrackCommand {
         this.commandRepository = commandRepository;
     }
 
-    public void getCommandPosition(Long commandId) throws CommandException {
+    public void execute(ObjectId commandId) throws CommandException {
 
         Optional<Command> commandFounded = commandRepository.findById(commandId);
         if(!commandFounded.isPresent()) throw new CommandException("No such command !");

@@ -12,7 +12,6 @@ public interface RestaurantRepository {
 
     List<Restaurant> findByCategory(ObjectId restaurantId);
 
-
     Boolean isOpen(ObjectId restaurantId);
 
     void rateRestaurant(ObjectId clientId, ObjectId restaurantId, int rate);

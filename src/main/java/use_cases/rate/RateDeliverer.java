@@ -1,5 +1,6 @@
 package use_cases.rate;
 
+import model.ObjectId;
 import model.command.CommandException;
 import model.command.CommandRepository;
 import model.users.Account;
@@ -17,7 +18,7 @@ public class RateDeliverer {
         this.accountRepository = accountRepository;
     }
 
-    void rateDeliverer(Long clientId, Long delivererId, int rate) throws Exception {
+    void execute(ObjectId clientId, ObjectId delivererId, int rate) throws Exception {
 
         Optional<Account> client = accountRepository.findById(clientId);
         if (!client.isPresent()) throw new AccountException("no such user ! ");

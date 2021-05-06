@@ -1,5 +1,7 @@
 package model.dishes;
 
+import model.ObjectId;
+
 import java.util.Optional;
 
 public interface DishesRepository {
@@ -8,6 +10,6 @@ public interface DishesRepository {
 
     Optional<Dishes> getDish(Long id);
 
-    void rateDish(int rate, Long clientId, Long dishId);
+    void rateDish(int rate, ObjectId clientId, ObjectId dishId);
 
 }

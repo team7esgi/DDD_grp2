@@ -16,7 +16,7 @@ public class UpdateClientInformation {
         this.accountRepository = accountRepository;
     }
 
-    void updateClientInformation(Client client){
+    void execute(Client client){
         Optional<Account> clientFounded = accountRepository.findById(client.getId());
         try{
             if(!clientFounded.isPresent()) throw new AccountException("Client doesn't exist!");

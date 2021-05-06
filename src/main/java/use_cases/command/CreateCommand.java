@@ -1,5 +1,6 @@
 package use_cases.command;
 
+import model.ObjectId;
 import model.command.CommandException;
 import model.restaurant.Restaurant;
 import model.command.Command;
@@ -29,16 +30,16 @@ public class CreateCommand {
         this.accountRepository = accountRepository;
     }
 
-    Optional<Command> createCommand(List<Dishes> dishesList, Client client, Restaurant restaurant) throws Exception {
+    Optional<Command> execute(List<Dishes> dishesList, ObjectId clientId, ObjectId restaurantId) throws Exception {
 
         Optional<Command> command = null;
-        Optional<Account> clientAccount = accountRepository.findById(client.getId());
+        Optional<Account> clientAccount = accountRepository.findById(clientId);
         if(!clientAccount.isPresent()) throw new AccountException("Client doesn't exist !");
 
-        Optional<Restaurant> restaurantFounded = restaurantRepository.findById(restaurant.getId());
+        Optional<Restaurant> restaurantFounded = restaurantRepository.findById(restaurantId);
         if(!restaurantFounded.isPresent()) throw new RestaurantException("No such restaurant !");
 
-        boolean isOpen = restaurantRepository.isOpen(restaurant.getId());
+        boolean isOpen = restaurantRepository.isOpen(restaurantId);
         if(!isOpen) throw new RestaurantException("Restaurant closed ! ");
 
         for(Dishes dish : dishesList) {
@@ -46,7 +47,7 @@ public class CreateCommand {
         }
         try{
 
-            command = commandRepository.createCommand(dishesList,client, restaurant);
+            command = commandRepository.createCommand(dishesList,clientId, restaurantId);
 
         }catch (Error error){
             System.err.println(error.getMessage());

@@ -1,5 +1,6 @@
 package use_cases.rate;
 
+import model.ObjectId;
 import model.command.CommandRepository;
 import model.restaurant.Restaurant;
 import model.restaurant.RestaurantException;
@@ -21,7 +22,7 @@ public class RateRestaurant {
     }
 
 
-    void rateRestaurant(Long clientId, Long restaurantId, int rate) throws Exception {
+    void execute(ObjectId clientId, ObjectId restaurantId, int rate) throws Exception {
         Optional<Account> client = accountRepository.findById(clientId);
         if (!client.isPresent()) throw new AccountException("no such user !");
 

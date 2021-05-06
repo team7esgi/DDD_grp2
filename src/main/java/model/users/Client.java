@@ -27,6 +27,7 @@ public class Client extends Account {
     }
 
 
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -36,20 +37,17 @@ public class Client extends Account {
         return details;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return Objects.equals(id, client.id) &&
-                Objects.equals(email, client.email) &&
-                Objects.equals(password, client.password) &&
-                Objects.equals(firstName, client.firstName) &&
-                Objects.equals(lastName, client.lastName) &&
+        return Objects.equals(this.id, client.id) &&
+                Objects.equals(this.email, client.email) &&
+                Objects.equals(this.password, client.password) &&
+                Objects.equals(this.firstName, client.firstName) &&
+                Objects.equals(this.lastName, client.lastName) &&
                 Objects.equals(address, client.address) &&
                 Objects.equals(phoneNumber, client.phoneNumber) &&
                 Objects.equals(details, client.details);

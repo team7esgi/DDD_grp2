@@ -35,6 +35,26 @@ public class Restaurant extends Account {
         this.rate = rate;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public Rate getRate() {
+        return rate;
+    }
+
     public List<Dishes> getDishesList() {
         return dishesList;
     }

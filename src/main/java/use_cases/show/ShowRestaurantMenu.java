@@ -15,7 +15,7 @@ public class ShowRestaurantMenu {
         this.restaurantRepository = restaurantRepository;
     }
 
-    List<Dishes> showRestaurantMenu(Restaurant restaurant){
+    List<Dishes> execute(Restaurant restaurant){
         List<Dishes> restaurantMenu = new ArrayList<Dishes>();
 
         try{
