@@ -11,6 +11,7 @@ import java.util.Optional;
 
 public class RateCommand {
 
+
     private final CommandRepository commandRepository;
     private final AccountRepository accountRepository;
 
