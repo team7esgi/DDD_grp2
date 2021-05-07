@@ -1,8 +1,6 @@
 package use_cases.client;
 
-import model.users.Account;
-import model.users.AccountRepository;
-import model.users.Client;
+import model.users.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,20 +18,15 @@ public class CreateClientTest {
 
     private static AccountRepository accountRepository = mock(AccountRepository.class);
     private static Client client = null;
-    private static Client newClient = null;
+    private static Address clientAddress = null;
+    private static Name clientName = null;
 
     @BeforeEach
     public void setUp() {
 
-        client = new Client(0L,"test@mail.com", "0000",
-                "test","test", "address",
-                "0000000000", "des details");
-        newClient = new Client(0L,"test@mail.com", "0000",
-                "test","test", "address",
-                "0000000000", "des details");
-        newClient = new Client(0L,"test@mail.com", "0000",
-                "test","test", "address",
-                "0000000000", "des details");
+        clientName = new Name("clientFirstName", "clientLastName");
+        clientAddress = new Address(1, "rue de Paris", 75001, "Paris", "France");
+        client = new Client("client@mail.com","000000",clientName, clientAddress, "0000000000","details");
         when(accountRepository.insert(client)).thenReturn(Optional.of(client));
 
     }
