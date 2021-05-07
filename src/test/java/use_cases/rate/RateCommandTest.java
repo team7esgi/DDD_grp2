@@ -57,7 +57,6 @@ class RateCommandTest {
         restaurant = new Restaurant("test1@test.com", "password", objectId, "restau1",
                 "chinois", address, dishesList, true, rateRestau);
 
-
         Rate rateDelivrer = new Rate();
         Map position = new Map(address, address);
         Map route = new Map(address, address);
@@ -65,18 +64,18 @@ class RateCommandTest {
         CommandState state = CommandState.DELIVERED;
 
         commandId = new ObjectId();
-        command = new Command(commandId,dishesList, client.getId(),deliver.getId(),position,state);
-
+        Rate rateCommand = new Rate();
+        command = new Command(commandId,dishesList, client.getId(),deliver.getId(),position,state, rateCommand);
+        when(mockCommandeRepository.createCommand(dishesList, client.getId(), restaurant.getId())).thenReturn(Optional.of(command));
         when(mockAccountRepository.findById(client.getId())).thenReturn(Optional.of(client));
-        when(mockCommandeRepository.findById(client.getId())).thenReturn(Optional.of(command));
     }
 
     @Test
     void rateCommand() {
         mockCommandeRepository.rateCommand(client.getId(), command.getId(), 5);
-        Command ratedCommand = mockCommandeRepository.findById(client.getId()).get();
+        Command ratedCommand = mockCommandeRepository.findById(command.getId()).get();
         assertNotNull(ratedCommand);
-        //assertEquals(commandId, command.getId());
-        //assertEquals(0L, command.());
+        assertEquals(commandId, ratedCommand.getId());
+        assertEquals(5, ratedCommand.getRate());
     }
 }

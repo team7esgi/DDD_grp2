@@ -30,7 +30,7 @@ public class Command {
         this.delivererId = delivererId;
         this.position = position;
         this.state = state;
-        this.rate = rate
+        this.rate = rate;
     }
 
     public Command() {
