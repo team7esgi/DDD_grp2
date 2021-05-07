@@ -47,7 +47,7 @@ class RateCommandTest {
             ObjectId restaurantId = new ObjectId();
             Description description = new Description("descriptDish", "plat_"+i, 14);
             Rate rateDish = new Rate();
-            dishe = new Dishes();//(objectId,description, restaurantId, rateDish, true);
+            dishe = new Dishes(objectId, description, restaurantId, rateDish, true);//(objectId,description, restaurantId, rateDish, true);
             dishesList.add(dishe);
         }
 
@@ -56,14 +56,15 @@ class RateCommandTest {
         restaurant = new Restaurant("test1@test.com", "password", objectId, "restau1",
                 "chinois", address, dishesList, true, rateRestau);
 
+
         Rate rateDelivrer = new Rate();
-        Map position = new Map();
-        Map route = new Map();
+        Map position = new Map(address, address);
+        Map route = new Map(address, address);
         deliver = new Deliverer("test2@test.com", "password", name, position, route, rateDelivrer) ;
         CommandState state = CommandState.DELIVERED;
 
         ObjectId commandId = new ObjectId();
-        command = new Command();//(commandId,dishesList, client.getId(),deliver.getId(),map,state);
+        command = new Command(commandId,dishesList, client.getId(),deliver.getId(),position,state);
 
         when(mockAccountRepository.findById(client.getId())).thenReturn(Optional.of(client));
         when(mockCommandeRepository.findById(client.getId())).thenReturn(Optional.of(command));
