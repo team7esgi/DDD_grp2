@@ -11,6 +11,15 @@ public class Dishes {
     private Rate rate;
     private boolean isAvailable;
 
+    public Dishes(ObjectId id, Description description, ObjectId restaurantId, Rate rate, boolean isAvailable) {
+        this.id = id;
+        this.description = description;
+        this.restaurantId = restaurantId;
+        this.rate = rate;
+        this.isAvailable = isAvailable;
+    }
+
+    public Dishes(){}
     public ObjectId getId() {
         return id;
     }

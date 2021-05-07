@@ -10,8 +10,6 @@ import java.util.List;
 
 public class Restaurant extends Account {
 
-    private ObjectId id;
-
     private String name;
 
     private String category;
@@ -24,9 +22,8 @@ public class Restaurant extends Account {
 
     private Rate rate;
 
-    public Restaurant(String email, String password, ObjectId id, String name, String category, Address address, List<Dishes> dishesList, boolean isOpen, Rate rate) {
+    public Restaurant(String email, String password, String name, String category, Address address, List<Dishes> dishesList, boolean isOpen, Rate rate) {
         super(email, password);
-        this.id = id;
         this.name = name;
         this.category = category;
         this.address = address;
@@ -59,7 +56,4 @@ public class Restaurant extends Account {
         return dishesList;
     }
 
-    public ObjectId getId() {
-        return this.id;
-    }
 }
