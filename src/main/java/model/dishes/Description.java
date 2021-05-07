@@ -13,4 +13,7 @@ public class Description {
         this.details = details;
         this.price = price;
     }
+
+    public Description() {
+    }
 }

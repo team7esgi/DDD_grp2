@@ -21,6 +21,10 @@ public class Deliverer extends Account {
         this.rate = rate;
     }
 
+    public Deliverer() {
+        this.name = null;
+    }
+
     public Map getPosition() {
         return position;
     }

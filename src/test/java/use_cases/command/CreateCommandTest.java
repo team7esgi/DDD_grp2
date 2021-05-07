@@ -33,7 +33,6 @@ class CreateCommandTest {
     private static CommandRepository commandRepository = mock(CommandRepository.class);
 
     private static Client client = null;
-    private static Address clientAddress = null;
     private static Name clientName = null;
 
     private Deliverer deliverer = null;
@@ -62,7 +61,7 @@ class CreateCommandTest {
     void setUp() {
 
         clientName = new Name("clientFirstName", "clientLastName");
-        clientAddress = new Address(1, "rue de Paris", 75001, "Paris", "France");
+        Address clientAddress = new Address(1, "rue de Paris", 75001, "Paris", "France");
         client = new Client("client@mail.com","000000",clientName, clientAddress, "0000000000","details");
 
         restaruantAddress = new Address(1,"rue de Marseille",75002,"Paris","France");
@@ -74,7 +73,7 @@ class CreateCommandTest {
         rateDeliver = new Rate();
         rateDeliver.addRating(7);
         nameDeliver = new Name("ESCOBAR", "Pablo");
-        mapDeliver = new Map(restaruantAddress,clientAddress);
+        mapDeliver = new Map(restaruantAddress, clientAddress);
 
         stateCommand = CommandState.ACCEPTED;
         command = new Command(new ObjectId(),dishesList,client.getId(),deliverer.getId(), mapCommand, stateCommand );

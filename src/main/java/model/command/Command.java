@@ -29,6 +29,7 @@ public class Command {
         this.state = state;
     }
 
+
     public void showCommandPosition() throws CommandException {
         switch (this.getState()) {
             case ACCEPTED :
@@ -59,11 +60,9 @@ public class Command {
         }
     }
 
-
     public ObjectId getId() {
         return this.id;
     }
-
 
     public List<Dishes> getDishesList() {
         return dishesList;
