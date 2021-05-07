@@ -8,8 +8,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -24,12 +23,16 @@ public class CreateClientTest {
     private static Name clientName = null;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws AccountException {
 
         clientName = new Name("clientFirstName", "clientLastName");
         clientAddress = new Address(1, "rue de Paris", 75001, "Paris", "France");
         client = new Client("client@mail.com","000000",clientName, clientAddress, "0000000000","details");
         when(accountRepository.insert(client)).thenReturn(Optional.of(client));
+
+        when(createClientMock.execute(client)).thenReturn(client);
+        when(createClientMock.execute(null)).thenThrow(new AccountException("Compte inexsitant"));
+
 
     }
 
@@ -37,9 +40,13 @@ public class CreateClientTest {
     public void execute() throws AccountException {
 
         Optional<Account> newClient = accountRepository.insert(client);
-//        Client clientToInsert = createClientMock.execute(client);
         assertNotNull(newClient.get());
         assertEquals(client, newClient.get());
+
+        Client clientToInsert = createClientMock.execute(client);
+        assertNotNull(clientToInsert);
+        assertEquals(client, clientToInsert);
+        assertThrows(AccountException.class,()-> createClientMock.execute(null));
 
     }
 

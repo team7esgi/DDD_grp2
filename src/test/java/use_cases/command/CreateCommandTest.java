@@ -41,23 +41,23 @@ class CreateCommandTest {
     private static Name clientName = null;
 
     private Deliverer deliverer = null;
-    private static Rate rateDeliver = new Rate();
-    private static Name nameDeliver = new Name();
-    private static Map mapDeliver = new Map();
+    private static Rate rateDeliver;
+    private static Name nameDeliver;
+    private static Map mapDeliver ;
 
-    private static Restaurant restaurant = new Restaurant();
-    private static Address restaruantAddress = new Address();
-    private static Rate rateRestaurant = new Rate();
+    private static Restaurant restaurant;
+    private static Address restaruantAddress;
+    private static Rate rateRestaurant;
 
 
-    private static List<Dishes> dishesList = new ArrayList<>();
-    private static Dishes dishe = new Dishes();
-    private static Description description = new Description();
-    private static Rate rate = new Rate();
+    private static List<Dishes> dishesList = new ArrayList<>() ;
+    private static Dishes dishe ;
+    private static Description description ;
+    private static Rate rate;
 
-    private static Command commandClient = new Command();
-    private static Map mapCommand = new Map();
-    private static CommandState stateCommand = null;
+    private static Command commandClient ;
+    private static Map mapCommand;
+    private static CommandState stateCommand ;
 
 
     @BeforeEach
@@ -69,7 +69,16 @@ class CreateCommandTest {
 
         restaruantAddress = new Address(1,"rue de Marseille",75002,"Paris","France");
         rateRestaurant = new Rate();
-        restaurant = new Restaurant("restaurant@mail.com","000000","Chez Itadori","Japonais",restaruantAddress,dishesList,true,rateRestaurant);
+
+
+        restaurant = new Restaurant("restaurant","000000","Chez Okinawa", "Japonais", restaruantAddress, dishesList,true, rateRestaurant);
+        for(int i = 0; i<3; i++){
+            description = new Description("plat_"+i,"details",(float)i*10);
+            rate = new Rate();
+            rate.addRating(i+1);
+            dishe = new Dishes(new ObjectId(),description,restaurant.getId(),rate,true);
+            dishesList.add(dishe);
+        }
         rateRestaurant.addRating(10);
         client = new Client("client@mail.com","000000",clientName, clientAddress, "0000000000","details");
 
@@ -81,20 +90,16 @@ class CreateCommandTest {
 
         stateCommand = CommandState.ACCEPTED;
         //Dishe List
-        for(int i = 0; i<3; i++){
-            description = new Description("plat_"+i,"details",(float)i*10);
-            rate = new Rate();
-            rate.addRating(i+1);
-            dishe = new Dishes(new ObjectId(),description,restaurant.getId(),rate,true);
-            dishesList.add(dishe);
-        }
 
-        commandClient = new Command(new ObjectId(),dishesList,client.getId(),deliverer.getId(), mapCommand, stateCommand );
 
-        when(accountRepository.insert(client)).thenReturn(Optional.of(client));
+        commandClient = new Command(new ObjectId(),dishesList,client.getId(),deliverer.getId(), mapCommand, stateCommand,new Rate() );
+
+        when(accountRepository.findById(client.getId())).thenReturn(Optional.of(client));
         when(restaurantRepository.findById(restaurant.getId())).thenReturn(Optional.of(restaurant));
         when(commandRepository.createCommand(dishesList,client.getId(),restaurant.getId())).thenReturn(Optional.of(commandClient));
 
+
+        when(createCommandMock.execute(dishesList,client.getId(),restaurant.getId())).thenReturn(Optional.of(commandClient));
         when(createCommandMock.execute(null,client.getId(),restaurant.getId())).thenThrow(new CommandException("Erreur de commande"));
         when(createCommandMock.execute(dishesList,null,restaurant.getId())).thenThrow(new AccountException("Erreur de commande"));
         when(createCommandMock.execute(dishesList,client.getId(),null)).thenThrow(new RestaurantException("Erreur de commande"));
@@ -104,21 +109,31 @@ class CreateCommandTest {
     }
 
     @Test
-    void execute()  {
+    void execute() throws RestaurantException, CommandException, AccountException {
+        Optional<Account> newAccount = accountRepository.findById(client.getId());
+        Optional<Restaurant> newRestaurant = restaurantRepository.findById(restaurant.getId());
         Optional<Command> newCommand = commandRepository.createCommand(dishesList,client.getId(),restaurant.getId());
 
+        Optional<Command> newCommandmock = createCommandMock.execute(dishesList,client.getId(),restaurant.getId());
+
+        assertNotNull(newAccount.get());
+        assertNotNull(newRestaurant.get());
         assertNotNull(newCommand.get());
+
+        assertEquals(commandClient, newCommandmock.get());
+        assertEquals(client, newAccount.get());
+        assertEquals(restaurant, newRestaurant.get());
         assertEquals(commandClient, newCommand.get());
+
+        assertThrows(CommandException.class,  () ->  createCommandMock.execute(null,client.getId(), restaurant.getId()));
+        assertThrows(AccountException.class,  () -> createCommandMock.execute(dishesList,null, restaurant.getId()));
+        assertThrows(RestaurantException.class,  () -> createCommandMock.execute(dishesList,client.getId(), null));
+
 
     }
 
     @Test
-    void verificationOf() throws RestaurantException, CommandException, AccountException {
-
-        assertThrows(CommandException.class,  () -> createCommandMock.execute(null,client.getId(), restaurant.getId()));
-        assertThrows(AccountException.class,  () -> createCommandMock.execute(dishesList,null, restaurant.getId()));
-        assertThrows(RestaurantException.class,  () -> createCommandMock.execute(dishesList,client.getId(), null));
-
+    void verificationOf() {
 
     }
 }

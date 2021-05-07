@@ -3,6 +3,7 @@ package model.command;
 import model.ObjectId;
 import model.dishes.Dishes;
 import model.maps.Map;
+import model.rate.Rate;
 
 import java.util.List;
 
@@ -20,51 +21,19 @@ public class Command {
 
     private CommandState state;
 
+    private Rate rate;
+
+    public Command(ObjectId id, List<Dishes> dishesList, ObjectId clientId, ObjectId delivererId, Map position, CommandState state, Rate rate) {
+        this.id = id;
+        this.dishesList = dishesList;
+        this.clientId = clientId;
+        this.delivererId = delivererId;
+        this.position = position;
+        this.state = state;
+        this.rate = rate;
+    }
+
     public Command() {
-    }
-    public Command(ObjectId id, List<Dishes> dishesList, ObjectId clientId, ObjectId delivererId, Map position, CommandState state) {
-        this.id = id;
-        this.dishesList = dishesList;
-        this.clientId = clientId;
-        this.delivererId = delivererId;
-        this.position = position;
-        this.state = state;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
-    public void setDishesList(List<Dishes> dishesList) {
-        this.dishesList = dishesList;
-    }
-
-    public void setClientId(ObjectId clientId) {
-        this.clientId = clientId;
-    }
-
-    public void setDelivererId(ObjectId delivererId) {
-        this.delivererId = delivererId;
-    }
-
-    public void setPosition(Map position) {
-        this.position = position;
-    }
-
-    public void setState(CommandState state) {
-        this.state = state;
-    }
-
-    @Override
-    public String toString() {
-        return "Command{" +
-                "id=" + id +
-                ", dishesList=" + dishesList +
-                ", clientId=" + clientId +
-                ", delivererId=" + delivererId +
-                ", position=" + position +
-                ", state=" + state +
-                '}';
     }
 
     public void showCommandPosition() throws CommandException {
@@ -121,5 +90,7 @@ public class Command {
         return state;
     }
 
-
+    public Rate getRate() {
+        return rate;
+    }
 }
