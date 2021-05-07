@@ -19,6 +19,17 @@ public class Dishes {
         this.isAvailable = isAvailable;
     }
 
+    @Override
+    public String toString() {
+        return "Dishes{" +
+                "id=" + id +
+                ", description=" + description +
+                ", restaurantId=" + restaurantId +
+                ", rate=" + rate +
+                ", isAvailable=" + isAvailable +
+                '}';
+    }
+
     public Dishes() {
     }
 

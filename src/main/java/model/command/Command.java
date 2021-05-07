@@ -20,6 +20,8 @@ public class Command {
 
     private CommandState state;
 
+    public Command() {
+    }
     public Command(ObjectId id, List<Dishes> dishesList, ObjectId clientId, ObjectId delivererId, Map position, CommandState state) {
         this.id = id;
         this.dishesList = dishesList;
@@ -29,6 +31,41 @@ public class Command {
         this.state = state;
     }
 
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    public void setDishesList(List<Dishes> dishesList) {
+        this.dishesList = dishesList;
+    }
+
+    public void setClientId(ObjectId clientId) {
+        this.clientId = clientId;
+    }
+
+    public void setDelivererId(ObjectId delivererId) {
+        this.delivererId = delivererId;
+    }
+
+    public void setPosition(Map position) {
+        this.position = position;
+    }
+
+    public void setState(CommandState state) {
+        this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "Command{" +
+                "id=" + id +
+                ", dishesList=" + dishesList +
+                ", clientId=" + clientId +
+                ", delivererId=" + delivererId +
+                ", position=" + position +
+                ", state=" + state +
+                '}';
+    }
 
     public void showCommandPosition() throws CommandException {
         switch (this.getState()) {
@@ -83,5 +120,6 @@ public class Command {
     public CommandState getState() {
         return state;
     }
+
 
 }

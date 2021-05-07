@@ -3,6 +3,8 @@ package use_cases.client;
 import model.users.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.Optional;
 
@@ -15,6 +17,8 @@ import static org.mockito.Mockito.when;
 public class CreateClientTest {
 
     private static AccountRepository accountRepository = mock(AccountRepository.class);
+    private static CreateClient createClientMock = mock(CreateClient.class);
+
     private static Client client = null;
     private static Address clientAddress = null;
     private static Name clientName = null;
@@ -30,11 +34,11 @@ public class CreateClientTest {
     }
 
     @Test
-    public void execute() {
-        //
+    public void execute() throws AccountException {
+
         Optional<Account> newClient = accountRepository.insert(client);
+//        Client clientToInsert = createClientMock.execute(client);
         assertNotNull(newClient.get());
-        System.out.println(newClient.toString());
         assertEquals(client, newClient.get());
 
     }

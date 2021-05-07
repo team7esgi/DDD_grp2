@@ -33,4 +33,13 @@ public class Deliverer extends Account {
         return route;
     }
 
+    @Override
+    public String toString() {
+        return "Deliverer{" +
+                "name=" + name +
+                ", position=" + position +
+                ", route=" + route +
+                ", rate=" + rate +
+                '}';
+    }
 }
