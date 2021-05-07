@@ -4,7 +4,6 @@ public class Rate {
 
     private  float lastRate;
     private float sum;
-
     private float totalNbRate;
 
     public void addRating(int rate){
