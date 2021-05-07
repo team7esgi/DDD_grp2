@@ -8,6 +8,11 @@ public class Map {
 
     private Address arrival;
 
+    public Map(Address departure, Address arrival) {
+        this.departure = departure;
+        this.arrival = arrival;
+    }
+
     public void showRoute(){
         System.out.println("Show the route to the ....");
     }
