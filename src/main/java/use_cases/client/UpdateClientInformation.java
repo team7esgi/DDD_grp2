@@ -16,15 +16,11 @@ public class UpdateClientInformation {
         this.accountRepository = accountRepository;
     }
 
-    void updateClientInformation(Client client){
+    void execute(Client client) throws AccountException {
         Optional<Account> clientFounded = accountRepository.findById(client.getId());
-        try{
-            if(!clientFounded.isPresent()) throw new AccountException("Client doesn't exist!");
-            accountRepository.updateClientInformation(client);
 
-        }catch (Error | Exception error){
-            System.err.println(error.getMessage());
-        }
+        if(!clientFounded.isPresent()) throw new AccountException("Client doesn't exist!");
 
+        accountRepository.updateClientInformation(client);
     }
 }

@@ -1,5 +1,6 @@
 package use_cases.command;
 
+import model.ObjectId;
 import model.command.Command;
 import model.command.CommandRepository;
 import model.users.Account;
@@ -20,7 +21,7 @@ public class ShowCommandHistory {
         this.accountRepository = accountRepository;
     }
 
-    public Optional<List<Command>> getCommandHistory(Long clientId) throws AccountException {
+    public Optional<List<Command>> execute(ObjectId clientId) throws AccountException {
         Optional<Account> clientFounded = accountRepository.findById(clientId);
 
         if(!clientFounded.isPresent()) throw new AccountException("No such user !");

@@ -14,16 +14,16 @@ public class ShowRestaurantsAvailable {
         this.restaurantRepository = restaurantRepository;
     }
 
-    List<Restaurant> showRestaurantsAvailable(){
-        List<Restaurant> restaurantsAvaible = new ArrayList<Restaurant>();
+    List<Restaurant> execute(){
+        List<Restaurant> restaurantsAvailable = new ArrayList<Restaurant>();
         try{
             List<Restaurant> restaurants = restaurantRepository.getAllRestaurants();
             for (Restaurant restaurant: restaurants) {
-                if (restaurant.isAvailable()) restaurantsAvaible.add(restaurant);
+                if (restaurant.isOpen()) restaurantsAvailable.add(restaurant);
             }
         }catch (Error error){
             System.err.println(error.getMessage());
         }
-        return  restaurantsAvaible;
+        return  restaurantsAvailable;
     }
 }

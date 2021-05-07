@@ -1,18 +1,12 @@
 package model.maps;
 
-import model.command.Command;
-import model.users.Deliver;
+import model.users.Address;
 
 public class Map {
 
-    private String departure;
+    private Address departure;
 
-    private String arrival;
-
-    public Map(String departure, String arrival) {
-        this.departure = departure;
-        this.arrival = arrival;
-    }
+    private Address arrival;
 
     public void showRoute(){
         System.out.println("Show the route to the ....");

@@ -1,5 +1,6 @@
 package use_cases.rate;
 
+import model.ObjectId;
 import model.command.Command;
 import model.command.CommandException;
 import model.command.CommandRepository;
@@ -20,17 +21,19 @@ public class RateCommand {
         this.accountRepository = accountRepository;
     }
 
-    void rateCommand(Long clientId, Long commandId, int rate) throws Exception {
-        Optional<Account> client = accountRepository.findById(clientId);
-        if (!client.isPresent()) throw new AccountException("no such user ! ");
+    void execute(ObjectId clientId, ObjectId commandId, int rate) throws Exception {
+
         Optional<Command> command = commandRepository.findById(commandId);
+        Optional<Account> client = accountRepository.findById(clientId);
+        commandRepository.rateCommand(clientId, commandId, rate);
+
+        verificationOf(rate, command, client);
+
+    }
+
+    private void verificationOf(int rate, Optional<Command> command, Optional<Account> client) throws Exception {
+        if (!client.isPresent()) throw new AccountException("no such user ! ");
         if (!command.isPresent()) throw new CommandException("no such command ! ");
         if (rate <0 || rate >5) throw new Exception("rate inexistant ! ");
-
-        try{
-           commandRepository.rateCommand(clientId, commandId, rate);
-        }catch (Error error) {
-            System.err.println(error.getMessage());
-        }
     }
 }

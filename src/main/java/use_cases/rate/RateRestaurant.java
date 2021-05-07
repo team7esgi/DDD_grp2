@@ -1,5 +1,6 @@
 package use_cases.rate;
 
+import model.ObjectId;
 import model.command.CommandRepository;
 import model.restaurant.Restaurant;
 import model.restaurant.RestaurantException;
@@ -15,25 +16,24 @@ public class RateRestaurant {
     private final RestaurantRepository restaurantRepository;
     private final AccountRepository accountRepository;
 
-    public RateRestaurant(CommandRepository commandRepository, RestaurantRepository restaurantRepository, AccountRepository accountRepository) {
+    public RateRestaurant(RestaurantRepository restaurantRepository, AccountRepository accountRepository) {
         this.restaurantRepository = restaurantRepository;
         this.accountRepository = accountRepository;
     }
 
 
-    void rateRestaurant(Long clientId, Long restaurantId, int rate) throws Exception {
+    void execute(ObjectId clientId, ObjectId restaurantId, int rate) throws Exception {
         Optional<Account> client = accountRepository.findById(clientId);
-        if (!client.isPresent()) throw new AccountException("no such user !");
-
         Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
+        restaurantRepository.rateRestaurant(clientId,restaurantId, rate);
+
+        verificationOf(rate, client, restaurant);
+
+    }
+
+    private void verificationOf(int rate, Optional<Account> client, Optional<Restaurant> restaurant) throws Exception {
+        if (!client.isPresent()) throw new AccountException("no such user !");
         if (!restaurant.isPresent()) throw new RestaurantException("no such restaurant ! ");
-
         if (rate <0 || rate >5) throw new Exception("rate inexistant ! ");
-
-        try{
-            restaurantRepository.rateRestaurant(clientId,restaurantId, rate);
-        }catch (Error error) {
-            System.err.println(error.getMessage());
-        }
     }
 }
