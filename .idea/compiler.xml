@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="grp2_project" />
-        <module name="DDD_grp2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />

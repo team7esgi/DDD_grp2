@@ -10,6 +10,12 @@ public class Rate {
         sum+=rate;
         totalNbRate++;
     }
+
+    public Rate() {
+        this.sum = 0;
+        this.totalNbRate = 0;
+    }
+
     public float getRatings(){
         return sum/totalNbRate;
     }
