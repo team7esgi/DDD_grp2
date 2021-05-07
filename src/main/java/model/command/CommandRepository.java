@@ -14,6 +14,6 @@ public interface CommandRepository {
 
     Optional<List<Command>> getAllCommandsForUser(ObjectId userId);
 
-    void rateCommand(ObjectId clientId, ObjectId commandId, int rate);
+    void save(Command command);
 
 }

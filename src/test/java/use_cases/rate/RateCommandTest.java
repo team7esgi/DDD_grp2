@@ -2,6 +2,7 @@ package use_cases.rate;
 
 import model.ObjectId;
 import model.command.Command;
+import model.command.CommandException;
 import model.command.CommandRepository;
 import model.command.CommandState;
 import model.dishes.Description;
@@ -13,19 +14,24 @@ import model.users.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
 
 class RateCommandTest {
 
     AccountRepository mockAccountRepository = mock(AccountRepository.class);
-    CommandRepository mockCommandeRepository = mock(CommandRepository.class);
+    CommandRepository mockCommandRepository = mock(CommandRepository.class);
+
+    RateCommand rateCommandUseCase;
+
     Client client = null;
     Command command = null;
     Dishes dishe = null;
@@ -65,17 +71,46 @@ class RateCommandTest {
 
         commandId = new ObjectId();
         Rate rateCommand = new Rate();
+        rateCommand.addRating(5);
         command = new Command(commandId,dishesList, client.getId(),deliver.getId(),position,state, rateCommand);
-        when(mockCommandeRepository.createCommand(dishesList, client.getId(), restaurant.getId())).thenReturn(Optional.of(command));
+        when(mockCommandRepository.createCommand(dishesList, client.getId(), command.getId())).thenReturn(Optional.of(command));
         when(mockAccountRepository.findById(client.getId())).thenReturn(Optional.of(client));
+        when(mockCommandRepository.findById(command.getId())).thenReturn(Optional.of(command));
+
+        rateCommandUseCase =  new RateCommand(mockCommandRepository, mockAccountRepository);
+
     }
 
     @Test
     void rateCommand() {
-        mockCommandeRepository.rateCommand(client.getId(), command.getId(), 5);
-        Command ratedCommand = mockCommandeRepository.findById(command.getId()).get();
+        Command ratedCommand = null;
+        try {
+            ratedCommand = rateCommandUseCase.execute(client.getId(), command.getId(), 5);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(5.0, ratedCommand.getRate().getRatings());
+
         assertNotNull(ratedCommand);
         assertEquals(commandId, ratedCommand.getId());
-        assertEquals(5, ratedCommand.getRate());
+        assertEquals(client.getId(), ratedCommand.getClientId());
+        assertEquals(CommandState.DELIVERED, ratedCommand.getState());
+
+    }
+
+
+    @Test
+    void rateCommandExceptionRate() {
+        assertThrows(Exception.class, () -> rateCommandUseCase.execute(client.getId(), command.getId(), 10));
+    }
+
+    @Test
+    void rateCommandExceptionUser() {
+        assertThrows(AccountException.class, () -> rateCommandUseCase.execute(new ObjectId(), command.getId(), 5));
+    }
+
+    @Test
+    void rateCommandExceptionCommand() {
+        assertThrows(CommandException.class, () -> rateCommandUseCase.execute(client.getId(), new ObjectId(), 5));
     }
 }
