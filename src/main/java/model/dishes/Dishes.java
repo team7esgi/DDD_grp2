@@ -11,6 +11,8 @@ public class Dishes {
     private Rate rate;
     private boolean isAvailable;
 
+
+
     public ObjectId getId() {
         return id;
     }
