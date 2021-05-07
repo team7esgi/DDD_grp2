@@ -1,8 +1,0 @@
-
-g	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(¬Õ¹Ùüÿÿÿÿ8üÍè“”/
-b	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(©ËŞ©8üÍè“”/
-U
-java:S1172"8Remove this unused method parameter "commandRepository".(Íª»¬8ÿÍè“”/
->
-java:S1181 "!Catch Exception instead of Error.(ê–½8Ö–˜õ“/
-Z	java:S106!"9Replace this use of System.out or System.err by a logger.(Ÿ¢ºÑúÿÿÿÿ8×–˜õ“/

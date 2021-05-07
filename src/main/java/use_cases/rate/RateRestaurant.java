@@ -32,8 +32,18 @@ public class RateRestaurant {
     }
 
     private void verificationOf(int rate, Optional<Account> client, Optional<Restaurant> restaurant) throws Exception {
-        if (!client.isPresent()) throw new AccountException("no such user !");
-        if (!restaurant.isPresent()) throw new RestaurantException("no such restaurant ! ");
-        if (rate <0 || rate >5) throw new Exception("rate inexistant ! ");
+        try{
+            if (!client.isPresent()) throw new AccountException("no such user ! ");
+        }catch (NullPointerException e){
+            throw new AccountException("no such user ! ");
+        }
+
+        try{
+            if (!restaurant.isPresent()) throw new RestaurantException("no such restaurant ! ");
+        }catch (NullPointerException e){
+            throw new RestaurantException("no such restaurant ! ");
+        }
+
+        if (!(rate > 0 && rate <= 5)) throw new Exception("rate inexistant ! ");
     }
 }

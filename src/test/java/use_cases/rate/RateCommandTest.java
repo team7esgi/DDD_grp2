@@ -14,8 +14,6 @@ import model.users.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +32,7 @@ class RateCommandTest {
 
     Client client = null;
     Command command = null;
-    Dishes dishe = null;
+    Dishes dish = null;
     List<Dishes> dishesList = new ArrayList<Dishes>();
     Deliverer deliver = null;
     Restaurant restaurant = null;
@@ -54,8 +52,8 @@ class RateCommandTest {
             ObjectId restaurantId = new ObjectId();
             Description description = new Description("descriptDish", "plat_"+i, 14);
             Rate rateDish = new Rate();
-            dishe = new Dishes(objectId, description, restaurantId, rateDish, true);//(objectId,description, restaurantId, rateDish, true);
-            dishesList.add(dishe);
+            dish = new Dishes(objectId, description, restaurantId, rateDish, true);//(objectId,description, restaurantId, rateDish, true);
+            dishesList.add(dish);
         }
 
         ObjectId objectId = new ObjectId();
