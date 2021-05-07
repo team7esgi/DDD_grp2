@@ -20,6 +20,15 @@ public class Command {
 
     private CommandState state;
 
+    public Command(ObjectId id, List<Dishes> dishesList, ObjectId clientId, ObjectId delivererId, Map position, CommandState state) {
+        this.id = id;
+        this.dishesList = dishesList;
+        this.clientId = clientId;
+        this.delivererId = delivererId;
+        this.position = position;
+        this.state = state;
+    }
+
     public void showCommandPosition() throws CommandException {
         switch (this.getState()) {
             case ACCEPTED :
@@ -50,11 +59,9 @@ public class Command {
         }
     }
 
-
     public ObjectId getId() {
         return this.id;
     }
-
 
     public List<Dishes> getDishesList() {
         return dishesList;
