@@ -1,7 +1,5 @@
 package model.users;
 
-import java.util.Objects;
-
 public class Client extends Account {
 
     private final Name name;
@@ -16,6 +14,13 @@ public class Client extends Account {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.details = details;
+    }
+
+    public Client() {
+        this.name = null;
+        this.address = null;
+        this.phoneNumber = "";
+        this.details = "";
     }
 
     public Name getName() {

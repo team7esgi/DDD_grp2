@@ -13,6 +13,9 @@ public class Map {
         this.arrival = arrival;
     }
 
+    public Map() {
+    }
+
     public void showRoute(){
         System.out.println("Show the route to the ....");
     }

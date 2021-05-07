@@ -29,6 +29,9 @@ public class Command {
         this.state = state;
     }
 
+    public Command() {
+    }
+
     public void showCommandPosition() throws CommandException {
         switch (this.getState()) {
             case ACCEPTED :

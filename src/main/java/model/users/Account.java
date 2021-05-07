@@ -14,6 +14,9 @@ public class Account {
         this.password = password;
     }
 
+    public Account() {
+    }
+
     public ObjectId getId() {
         return id;
     }

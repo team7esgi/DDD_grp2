@@ -19,6 +19,9 @@ public class Dishes {
         this.isAvailable = isAvailable;
     }
 
+    public Dishes() {
+    }
+
     public ObjectId getId() {
         return id;
     }

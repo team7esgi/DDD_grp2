@@ -35,6 +35,9 @@ public class Restaurant extends Account {
         this.rate = rate;
     }
 
+    public Restaurant() {
+    }
+
     public String getName() {
         return name;
     }
