@@ -2,30 +2,35 @@ package use_cases.command;
 
 import model.ObjectId;
 import model.command.Command;
+import model.command.CommandRepository;
+import model.command.CommandState;
 import model.dishes.Description;
 import model.dishes.Dishes;
+import model.maps.Map;
 import model.rate.Rate;
 import model.restaurant.Restaurant;
 import model.restaurant.RestaurantRepository;
 import model.users.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
 import sun.security.krb5.internal.crypto.Des;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 class CreateCommandTest {
 
     private static AccountRepository accountRepository = mock(AccountRepository.class);
     private static RestaurantRepository restaurantRepository = mock(RestaurantRepository.class);
-    //private static AccountRepository accountRepository = mock(AccountRepository.class);
+    private static CommandRepository commandRepository = mock(CommandRepository.class);
 
     private static Client client = null;
     private static Address clientAddress = null;
@@ -38,16 +43,17 @@ class CreateCommandTest {
 
     private static Restaurant restaurant = null;
     private static Address restaruantAddress = null;
-    private static Name restaurantName = null;
     private static Rate rateRestaurant = null;
 
 
     private static List<Dishes> dishesList = new ArrayList<>();
-    private static Dishes dishe = new Dishes();
+    private static Dishes dishe = null;
     private static Description description = null;
     private static Rate rate = null;
 
     private static Command command = null;
+    private static Map mapCommand = null;
+    private static CommandState stateCommand = null;
 
 
 
@@ -65,7 +71,13 @@ class CreateCommandTest {
         rateRestaurant.addRating(10);
         client = new Client("client@mail.com","000000",clientName, clientAddress, "0000000000","details");
 
-        command = new Command(new ObjectId(),dishesList,client.getId(),)
+        rateDeliver = new Rate();
+        rateDeliver.addRating(7);
+        nameDeliver = new Name("ESCOBAR", "Pablo");
+        mapDeliver = new Map(restaruantAddress,clientAddress);
+
+        stateCommand = CommandState.ACCEPTED;
+        command = new Command(new ObjectId(),dishesList,client.getId(),deliverer.getId(), mapCommand, stateCommand );
         when(accountRepository.insert(client)).thenReturn(Optional.of(client));
         when(restaurantRepository.findById(restaurant.getId())).thenReturn(Optional.of(restaurant));
 
@@ -82,6 +94,10 @@ class CreateCommandTest {
 
     @Test
     void execute() {
+        Optional<Command> newCommand = commandRepository.createCommand(dishesList,client.getId(),restaurant.getId());
+
+        assertNotNull(newCommand);
+        assertEquals(command, newCommand.get());
     }
 
     @Test
