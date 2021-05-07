@@ -51,7 +51,7 @@ class RateRestaurantTest {
             dishesList.add(dish);
         }
 
-        restaurant = new Restaurant("test1@test.com", "password", new ObjectId(), "restau1",
+        restaurant = new Restaurant("test1@test.com", "password", "restau1",
                 "chinois", address, dishesList, true, new Rate());
 
         Rate rateCommand = new Rate();

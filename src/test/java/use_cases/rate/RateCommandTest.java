@@ -58,7 +58,7 @@ class RateCommandTest {
 
         ObjectId objectId = new ObjectId();
         Rate rateRestau = new Rate();
-        restaurant = new Restaurant("test1@test.com", "password", objectId, "restau1",
+        restaurant = new Restaurant("test1@test.com", "password", "restau1",
                 "chinois", address, dishesList, true, rateRestau);
 
         Rate rateDelivrer = new Rate();
