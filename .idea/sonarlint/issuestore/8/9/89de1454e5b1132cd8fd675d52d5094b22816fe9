@@ -1,0 +1,8 @@
+
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(¬Õ¹Ùüÿÿÿÿ
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(¡É‡ûÿÿÿÿ
+^
+java:S1128"<Remove this unused import 'model.command.CommandRepository'.(—”²¤ùÿÿÿÿ8˜Íè“”/
+7
+java:S1181#"!Catch Exception instead of Error.(ê–½
+S	java:S106$"9Replace this use of System.out or System.err by a logger.(Ÿ¢ºÑúÿÿÿÿ
