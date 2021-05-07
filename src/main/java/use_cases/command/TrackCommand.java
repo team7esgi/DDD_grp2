@@ -4,11 +4,11 @@ import model.ObjectId;
 import model.command.Command;
 import model.command.CommandException;
 import model.command.CommandRepository;
-import model.command.CommandState;
 import model.maps.MapRepository;
-import model.maps.Map;
 
 import java.util.Optional;
+
+import static model.command.Command.verificationOfCommand;
 
 public class TrackCommand {
 
@@ -25,11 +25,10 @@ public class TrackCommand {
 
         Optional<Command> commandFounded = commandRepository.findById(commandId);
 
-        if(!commandFounded.isPresent()) throw new CommandException("No such command !");
+        verificationOfCommand(commandFounded);
 
         commandFounded.get().showCommandPosition();
     }
-
 
 
 

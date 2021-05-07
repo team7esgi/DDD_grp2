@@ -7,6 +7,8 @@ import model.users.Client;
 
 import java.util.Optional;
 
+import static model.users.Client.verificationOfClient;
+
 public class CreateClient {
 
 
@@ -19,11 +21,10 @@ public class CreateClient {
     public Client execute(Client client) throws AccountException {
         Optional<Account> clientFounded = accountRepository.findByEmail(client.getEmail());
 
-        if(clientFounded.isPresent()) throw new AccountException("User already exist !");
+        verificationOfClient(clientFounded);
 
         accountRepository.insert(client);
         return client;
-
-
     }
+
 }

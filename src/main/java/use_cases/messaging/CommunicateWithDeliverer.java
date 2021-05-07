@@ -1,8 +1,16 @@
 package use_cases.messaging;
 
 import model.ObjectId;
+import model.users.Account;
 import model.users.AccountException;
 import model.users.AccountRepository;
+
+import java.util.Optional;
+
+import static model.dishes.Dishes.verificationOfDishes;
+import static model.users.Client.verificationOfClient;
+import static model.users.Deliverer.verificationOfDeliverer;
+
 
 public class CommunicateWithDeliverer {
 
@@ -15,17 +23,14 @@ public class CommunicateWithDeliverer {
 
     void execute(ObjectId clientId, ObjectId deliverId, String message) throws AccountException {
 
-        boolean isClientPresent = accountRepository.findById(clientId).isPresent();
-        boolean isDelivererPresent = accountRepository.findById(deliverId).isPresent();
+        Optional<Account> clientExisted = accountRepository.findById(clientId);
+        Optional<Account> delivererExisted = accountRepository.findById(deliverId);
 
-        verificationOf(isClientPresent, isDelivererPresent);
+        verificationOfClient(clientExisted);
+        verificationOfDeliverer(delivererExisted);
 
         accountRepository.sendMessage(clientId, deliverId, message);
 
     }
 
-    private void verificationOf(boolean isClientPresent, boolean isDelivererPresent) throws AccountException {
-        if(!isClientPresent) throw new AccountException("No such user ! ");
-        if(!isDelivererPresent) throw new AccountException("No such deliverer !");
-    }
 }

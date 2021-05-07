@@ -7,6 +7,7 @@ import model.users.Account;
 import model.users.Address;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Restaurant extends Account {
 
@@ -34,6 +35,19 @@ public class Restaurant extends Account {
         this.isOpen = isOpen;
         this.rate = rate;
     }
+
+    private static void verificationOfOpen(boolean isOpen) throws RestaurantException {
+        if (!isOpen) throw new RestaurantException("Restaurant closed ! ");
+    }
+    private static void verificationOfRestaurant(Optional<Restaurant> restaurant) throws RestaurantException {
+        if(restaurant.isPresent()) throw new RestaurantException("No such restaurant !");
+    }
+
+    public static void VerificationOfExistenceAndAvailability(Optional<Restaurant> restaurant, boolean isOpen) throws RestaurantException {
+        verificationOfOpen(isOpen);
+        verificationOfRestaurant(restaurant);
+    }
+
 
     public Restaurant() {
     }

@@ -1,5 +1,7 @@
 package model.users;
 
+import java.util.Optional;
+
 public class Client extends Account {
 
     private final Name name;
@@ -22,6 +24,11 @@ public class Client extends Account {
         this.phoneNumber = "";
         this.details = "";
     }
+
+    public static void verificationOfClient(Optional<Account> client) throws AccountException {
+        if(client.isPresent()) throw new AccountException("User already exist !");
+    }
+
 
     public Name getName() {
         return name;

@@ -7,6 +7,8 @@ import model.users.Client;
 
 import java.util.Optional;
 
+import static model.users.Client.verificationOfClient;
+
 public class UpdateClientInformation {
 
 
@@ -19,8 +21,10 @@ public class UpdateClientInformation {
     void execute(Client client) throws AccountException {
         Optional<Account> clientFounded = accountRepository.findById(client.getId());
 
-        if(!clientFounded.isPresent()) throw new AccountException("Client doesn't exist!");
+        verificationOfClient(clientFounded);
 
         accountRepository.updateClientInformation(client);
     }
+
+
 }

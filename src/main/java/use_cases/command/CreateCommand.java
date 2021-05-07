@@ -11,9 +11,14 @@ import model.restaurant.RestaurantRepository;
 import model.users.Account;
 import model.users.AccountException;
 import model.users.AccountRepository;
+import model.users.Client;
 
 import java.util.List;
 import java.util.Optional;
+
+import static model.dishes.Dishes.verificationOfDishes;
+import static model.restaurant.Restaurant.*;
+import static model.users.Client.verificationOfClient;
 
 public class CreateCommand {
 
@@ -31,26 +36,16 @@ public class CreateCommand {
 
     Optional<Command> execute(List<Dishes> dishesList, ObjectId clientId, ObjectId restaurantId) throws CommandException, RestaurantException, AccountException {
 
-        Optional<Account> clientAccount = accountRepository.findById(clientId);
-        Optional<Restaurant> restaurantFounded = restaurantRepository.findById(restaurantId);
+        Optional<Account> clientExisted = accountRepository.findById(clientId);
+        Optional<Restaurant> restaurantExisted = restaurantRepository.findById(restaurantId);
         boolean isOpen = restaurantRepository.isOpen(restaurantId);
 
-        verificationOf(dishesList, clientAccount, restaurantFounded, isOpen);
+        VerificationOfExistenceAndAvailability(restaurantExisted, isOpen);
+        verificationOfClient(clientExisted);
+        verificationOfDishes(dishesList);
 
         return commandRepository.createCommand(dishesList, clientId, restaurantId);
     }
 
-
-    public void verificationOf(List<Dishes> dishesList, Optional<Account> clientAccount, Optional<Restaurant> restaurantFounded, boolean isOpen) throws AccountException, RestaurantException, CommandException {
-        if (!clientAccount.isPresent()) throw new AccountException("Client doesn't exist !");
-
-        if (!restaurantFounded.isPresent()) throw new RestaurantException("No such restaurant !");
-
-        if (!isOpen) throw new RestaurantException("Restaurant closed ! ");
-
-        for (Dishes dish : dishesList) {
-            if (!dish.isAvailable()) throw new CommandException("dish not available");
-        }
-    }
 
 }

@@ -4,8 +4,13 @@ import model.ObjectId;
 import model.dishes.Dishes;
 import model.maps.Map;
 import model.rate.Rate;
+import model.restaurant.Restaurant;
+import model.restaurant.RestaurantException;
+import model.users.Account;
+import model.users.AccountException;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Command {
 
@@ -64,6 +69,10 @@ public class Command {
             default : throw new CommandException("State invalid !");
 
         }
+    }
+
+    public static void verificationOfCommand(Optional<Command> command) throws CommandException {
+        if(!command.isPresent()) throw new CommandException("No such command !");
     }
 
     public ObjectId getId() {

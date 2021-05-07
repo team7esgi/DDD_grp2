@@ -3,6 +3,8 @@ package model.users;
 import model.maps.Map;
 import model.rate.Rate;
 
+import java.util.Optional;
+
 public class Deliverer extends Account {
 
     private final Name name;
@@ -20,6 +22,11 @@ public class Deliverer extends Account {
         this.route = route;
         this.rate = rate;
     }
+
+    public static void verificationOfDeliverer(Optional<Account> isDelivererPresent) throws AccountException {
+        if(!isDelivererPresent.isPresent()) throw new AccountException("No such deliverer !");
+    }
+
 
     public Deliverer() {
         this.name = null;

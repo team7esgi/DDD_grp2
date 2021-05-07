@@ -1,7 +1,10 @@
 package model.dishes;
 
 import model.ObjectId;
+import model.command.CommandException;
 import model.rate.Rate;
+
+import java.util.List;
 
 public class Dishes {
 
@@ -20,6 +23,12 @@ public class Dishes {
     }
 
     public Dishes() {
+    }
+
+    public static void verificationOfDishes(List<Dishes> dishesList) throws CommandException {
+        for (Dishes dish : dishesList) {
+            if (!dish.isAvailable()) throw new CommandException("dish not available");
+        }
     }
 
     public ObjectId getId() {

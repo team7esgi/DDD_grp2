@@ -6,6 +6,7 @@ import model.command.CommandRepository;
 import model.users.Account;
 import model.users.AccountException;
 import model.users.AccountRepository;
+import model.users.Client;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,9 +23,9 @@ public class ShowCommandHistory {
     }
 
     public Optional<List<Command>> execute(ObjectId clientId) throws AccountException {
-        Optional<Account> clientFounded = accountRepository.findById(clientId);
+        Optional<Account> clientExisted = accountRepository.findById(clientId);
 
-        if(!clientFounded.isPresent()) throw new AccountException("No such user !");
+        Client.verificationOfClient(clientExisted);
 
         return commandRepository.getAllCommandsForUser(clientId);
     }

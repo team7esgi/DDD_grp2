@@ -1,7 +1,6 @@
 package use_cases.rate;
 
 import model.ObjectId;
-import model.command.CommandRepository;
 import model.restaurant.Restaurant;
 import model.restaurant.RestaurantException;
 import model.restaurant.RestaurantRepository;
