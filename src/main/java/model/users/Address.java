@@ -16,6 +16,11 @@ public class Address {
         this.country = country;
     }
 
-
-
+    public Address() {
+        this.number = 0;
+        this.streetName = "";
+        this.zipCode = 0;
+        this.city = "";
+        this.country = "";
+    }
 }

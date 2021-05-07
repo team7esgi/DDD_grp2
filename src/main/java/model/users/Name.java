@@ -10,4 +10,9 @@ public class Name {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+    public Name() {
+        this.firstName = "";
+        this.lastName="";
+    }
 }
