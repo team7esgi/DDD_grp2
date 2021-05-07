@@ -3,6 +3,7 @@ package model.command;
 import model.ObjectId;
 import model.dishes.Dishes;
 import model.maps.Map;
+import model.rate.Rate;
 
 import java.util.List;
 
@@ -20,13 +21,16 @@ public class Command {
 
     private CommandState state;
 
-    public Command(ObjectId id, List<Dishes> dishesList, ObjectId clientId, ObjectId delivererId, Map position, CommandState state) {
+    private Rate rate;
+
+    public Command(ObjectId id, List<Dishes> dishesList, ObjectId clientId, ObjectId delivererId, Map position, CommandState state, Rate rate) {
         this.id = id;
         this.dishesList = dishesList;
         this.clientId = clientId;
         this.delivererId = delivererId;
         this.position = position;
         this.state = state;
+        this.rate = rate
     }
 
     public Command() {
@@ -86,4 +90,7 @@ public class Command {
         return state;
     }
 
+    public Rate getRate() {
+        return rate;
+    }
 }
